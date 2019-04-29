@@ -1,3 +1,10 @@
+/**
+ * Displays the status of an async load (such as API call)
+ *
+ * @format
+ * @flow
+ */
+
 import {Text, View, StyleSheet} from "react-native";
 import React from 'react';
 

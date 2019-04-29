@@ -7,8 +7,8 @@
 
 import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import CourseList from './CourseList'
-import {renderStatusScreen} from '../StatusScreen'
+import CourseList from './CourseList';
+import {renderStatusScreen} from '../StatusScreen';
 
 class CodeScreen extends Component {
 
@@ -95,4 +95,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CodeScreen
+export default CodeScreen;

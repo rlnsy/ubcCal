@@ -1,6 +1,10 @@
-import React, {Component} from 'react'
+/**
+ * A List of Courses
+ */
+
+import React, {Component} from 'react';
 import {FlatList} from 'react-native';
-import CourseListItem from './CourseListItem'
+import CourseListItem from './CourseListItem';
 
 class CourseList extends Component {
 
@@ -30,4 +34,4 @@ class CourseList extends Component {
     }
 }
 
-export default CourseList
+export default CourseList;

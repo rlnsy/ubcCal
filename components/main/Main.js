@@ -1,15 +1,14 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Primary App View
  *
  * @format
  * @flow
  */
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
-import CodeScreen from './codescreen/CodeScreen'
-import CourseScreen from './coursescreen/CourseScreen'
-import StartScreen from './StartScreen'
+import CodeScreen from './codescreen/CodeScreen';
+import CourseScreen from './coursescreen/CourseScreen';
+import StartScreen from './StartScreen';
 
 const MainNavigator = createStackNavigator({
   Start: {screen: StartScreen},
@@ -19,4 +18,4 @@ const MainNavigator = createStackNavigator({
 
 const Main  = createAppContainer(MainNavigator);
 
-export default Main
+export default Main;

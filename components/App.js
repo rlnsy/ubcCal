@@ -1,13 +1,12 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
+ * ubcCal: Views UBC courses via RESTful API
+ * Powered by React Native
  * @format
  * @flow
  */
 
 import React, {Component} from 'react';
-import Main from './main/Main'
+import Main from './main/Main';
 
 type Props = {};
 

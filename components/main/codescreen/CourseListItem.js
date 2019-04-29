@@ -1,4 +1,11 @@
-import React, {Component} from 'react'
+/**
+ * An item in the course list. Navigates to detail page on tap
+ *
+ * @format
+ * @flow
+ */
+
+import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 
 class CourseListItem extends Component {
