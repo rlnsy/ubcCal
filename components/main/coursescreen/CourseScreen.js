@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View} from "react-native";
+import {renderStatusScreen} from "../StatusScreen";
 
 class CourseScreen extends Component {
 
@@ -44,15 +45,7 @@ class CourseScreen extends Component {
               {(this.state.isLoaded && !this.state.error) ?
                   <View>
                     <Text> {this.state.name} </Text>
-                  </View> :
-                  <View style={styles.message}>
-                    {this.state.error ?
-                        <View style={styles.error}>
-                            <Text> An Error Occurred </Text>
-                        </View> :
-                        <Text> loading </Text>
-                    }
-                </View>
+                  </View> : renderStatusScreen(this.state.error)
               }
           </View>
       );
@@ -63,19 +56,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#053E77',
     },
-    message: {
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    error: {
-        height: '100%',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#E14F29'
-    }
 });
 
 export default CourseScreen

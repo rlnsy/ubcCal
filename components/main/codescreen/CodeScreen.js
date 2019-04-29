@@ -8,6 +8,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import CourseList from './CourseList'
+import {renderStatusScreen} from '../StatusScreen'
 
 class CodeScreen extends Component {
 
@@ -71,15 +72,7 @@ class CodeScreen extends Component {
                         code={this.state.code}
                         data={this.state.courses}
                    />
-                  </View> :
-                  <View style={styles.message}>
-                    {this.state.error ?
-                        <View style={styles.error}>
-                            <Text> An Error Occurred </Text>
-                        </View> :
-                        <Text> loading </Text>
-                    }
-                </View>
+                  </View> : renderStatusScreen(this.state.error)
               }
           </View>
       );
@@ -99,19 +92,6 @@ const styles = StyleSheet.create({
     infoFaculty: {
         color: 'white',
         fontSize: 16
-    },
-    message: {
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    error: {
-        height: '100%',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#E14F29'
     }
 });
 
