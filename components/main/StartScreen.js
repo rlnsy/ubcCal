@@ -32,7 +32,7 @@ class StartScreen extends Component {
     const {navigate} = this.props.navigation;
     return (
         <View style={styles.container}>
-          <Text> Enter a course code (ex: 'CPSC') </Text>
+          <Text style={styles.instruction}> Enter a course code (ex: 'CPSC') </Text>
             <TextInput
             style = {styles.codeBox}
             onChangeText = { this.updateEntry }
@@ -40,6 +40,7 @@ class StartScreen extends Component {
             maxLength = {4}
             />
           <Button
+              style={styles.findButton}
               title="Find Courses"
               onPress={() => navigate('Code', {code: this.state.codeEntry})}
           />
@@ -49,19 +50,27 @@ class StartScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  codeBox: {
-      height: 40,
-      width: 72,
-      borderColor: 'gray',
-      borderWidth: 1,
-      fontSize: 24,
-  }
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#053E77',
+    },
+    instruction: {
+        color: 'white',
+        paddingBottom: 20
+    },
+    codeBox: {
+        height: 40,
+        width: 70,
+        borderColor: 'white',
+        backgroundColor: 'white',
+        borderWidth: 1,
+        fontSize: 24,
+    },
+    findButton: {
+        color: 'white',
+    }
 });
 
 export default StartScreen

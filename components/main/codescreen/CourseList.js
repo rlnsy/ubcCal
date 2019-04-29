@@ -4,10 +4,12 @@ import CourseListItem from './CourseListItem'
 
 class CourseList extends Component {
 
-    _onPressItem = (id: string) => {
+    _onPressItem = (id) => {
         console.log(id);
         const selectedItem = this.props.data[id];
         const number = selectedItem.courseNo;
+        const {navigate} = this.props.navigation;
+        navigate('Course', {code: this.props.code, number: number});
     };
 
     _renderItem = ({item}) => (

@@ -58,9 +58,8 @@ class CodeScreen extends Component {
     }
 
     render() {
-        console.log(this.state.courses);
       return (
-          <View>
+          <View style={styles.container}>
               {(this.state.isLoaded && !this.state.error) ?
                   <View>
                     <View style = {styles.infoHeader}>
@@ -68,6 +67,7 @@ class CodeScreen extends Component {
                         <Text style={styles.infoFaculty}> {this.state.info.faculty} </Text>
                    </View>
                    <CourseList
+                        navigation={this.props.navigation}
                         code={this.state.code}
                         data={this.state.courses}
                    />
@@ -87,6 +87,9 @@ class CodeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#053E77',
+    },
     infoHeader: {
         height: 100,
         justifyContent: 'center',
