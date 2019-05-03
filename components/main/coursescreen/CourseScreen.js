@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View, Button} from "react-native";
 import {renderStatusScreen} from "../StatusScreen";
 
 class CourseScreen extends Component {
@@ -40,11 +40,19 @@ class CourseScreen extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
-          <View style={styles.container}>
+          <View>
               {(this.state.isLoaded && !this.state.error) ?
                   <View>
-                    <Text> {this.state.name} </Text>
+                      <View style={styles.header}>
+                          <Text style={{fontSize: 24, textAlign: 'center'}}> {this.state.name} : {this.state.title} </Text>
+                      </View>
+                      <View style={{height: 1, backgroundColor: '#d9d9d9'}} />
+                      <Button
+                          title="View on SSC"
+                          onPress={() => navigate('CourseWeb', {link: this.state.link})}
+                      />
                   </View> : renderStatusScreen(this.state.error)
               }
           </View>
@@ -55,6 +63,11 @@ class CourseScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#053E77',
+    },
+    header: {
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

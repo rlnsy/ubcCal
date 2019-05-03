@@ -30,10 +30,9 @@ const styles = StyleSheet.create({
         height: 80,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#053E77'
     },
     itemText: {
-        color: 'white',
+        color: 'black',
         fontSize: 24,
     }
 });

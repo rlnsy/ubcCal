@@ -60,13 +60,14 @@ class CodeScreen extends Component {
 
     render() {
       return (
-          <View style={styles.container}>
+          <View>
               {(this.state.isLoaded && !this.state.error) ?
                   <View>
-                    <View style = {styles.infoHeader}>
-                        <Text style={{fontSize: 32}}> {this.state.info.title} </Text>
+                    <View style ={styles.infoHeader}>
+                        <Text style={{fontSize: 24}}> {this.state.info.title} </Text>
                         <Text style={styles.infoFaculty}> {this.state.info.faculty} </Text>
                    </View>
+                  <View style={{height: 1, backgroundColor: '#d9d9d9'}} />
                    <CourseList
                         navigation={this.props.navigation}
                         code={this.state.code}
@@ -87,10 +88,10 @@ const styles = StyleSheet.create({
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#57C2D8',
     },
     infoFaculty: {
-        color: 'white',
+        paddingTop: 5,
+        color: 'black',
         fontSize: 16
     }
 });
