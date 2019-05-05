@@ -7,7 +7,7 @@
 
 import {Button, StyleSheet, Text, View, TextInput} from "react-native";
 import React, {Component} from 'react';
-import {VerticalPadding} from '../Utils'
+import {VerticalPadding} from '../utils'
 
 class StartScreen extends Component {
 
@@ -49,6 +49,11 @@ class StartScreen extends Component {
             <Button
                 title="Find Courses"
                 onPress={() => navigate('Code', {code: this.state.codeEntry})}
+            />
+            {VerticalPadding(30)}
+            <Button
+                title="Saved Courses"
+                onPress={() => navigate('Saved', {})}
             />
         </View>
     );

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, Button} from "react-native";
 import {renderStatusScreen} from "../StatusScreen";
+import {saveCourse} from "../../coursesaver/CourseSaver";
 
 class CourseScreen extends Component {
 
@@ -16,6 +17,8 @@ class CourseScreen extends Component {
             link: null,
             sections: [],
         };
+
+        this.save = this.save.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +42,10 @@ class CourseScreen extends Component {
             });
     }
 
+    save() {
+        saveCourse(this.state.courseCode, this.state.courseNo);
+    }
+
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -49,6 +56,10 @@ class CourseScreen extends Component {
                           <Text style={{fontSize: 24, textAlign: 'center'}}> {this.state.name} : {this.state.title} </Text>
                       </View>
                       <View style={{height: 1, backgroundColor: '#d9d9d9'}} />
+                      <Button
+                          title={"Save Course"}
+                          onPress={this.save}
+                      />
                       <Button
                           title="View on SSC"
                           onPress={() => navigate('CourseWeb', {link: this.state.link})}

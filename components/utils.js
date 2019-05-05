@@ -6,4 +6,5 @@ export function VerticalPadding(height) {
             height: height,
             backgroundColor: 'rgba(52, 52, 52, 1.0)'
         }}/>
-    ); }
+    );
+}

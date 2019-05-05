@@ -7,8 +7,18 @@
 
 import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import CourseList from './CourseList';
+import CourseList, {itemize} from '../courselist/CourseList';
 import {renderStatusScreen} from '../StatusScreen';
+
+function constructCourseList(rawCourses, code) {
+    let list = [];
+    for (let i = 0; i < rawCourses.length; i++) {
+        const c = rawCourses[i];
+        list[list.length] = {code: code, number: c};
+    }
+    console.log(list);
+    return list;
+}
 
 class CodeScreen extends Component {
 
@@ -19,19 +29,8 @@ class CodeScreen extends Component {
             isLoaded: false,
             error: null,
             info: null,
-            courses: []
-        }
-
-        this.itemizeCourses = this.itemizeCourses.bind(this);
-    }
-
-    itemizeCourses(courseList) {
-        let items = []
-        for (let i = 0; i < courseList.length; i++) {
-            const number = courseList[i]
-            items[items.length] = {key: i.toString(), courseNo: number}
-        }
-        return items;
+            courses: null
+        };
     }
 
     componentDidMount() {
@@ -43,7 +42,7 @@ class CodeScreen extends Component {
                 if (json) { // check for nonexistent object (i.e. invalid course code)
                     this.setState({
                         info: json,
-                        courses: this.itemizeCourses(json.courses),
+                        courses: itemize(constructCourseList(json.courses, this.state.code)),
                         isLoaded: true
                     });
                 } else {
@@ -54,6 +53,7 @@ class CodeScreen extends Component {
                 }
             })
             .catch((error) => {
+                console.log(error);
                 this.setState( {error: error});
             });
     }
@@ -70,7 +70,6 @@ class CodeScreen extends Component {
                   <View style={{height: 1, backgroundColor: '#d9d9d9'}} />
                    <CourseList
                         navigation={this.props.navigation}
-                        code={this.state.code}
                         data={this.state.courses}
                    />
                   </View> : renderStatusScreen(this.state.error)
