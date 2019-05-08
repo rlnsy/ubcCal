@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {StyleSheet, Text, View, Button} from "react-native";
 import {renderStatusScreen} from "../StatusScreen";
 import {saveCourse} from "../../coursesaver/CourseSaver";
+import {Divider, VerticalPadding} from "../../utils";
 
 class CourseScreen extends Component {
 
@@ -53,13 +54,16 @@ class CourseScreen extends Component {
               {(this.state.isLoaded && !this.state.error) ?
                   <View>
                       <View style={styles.header}>
-                          <Text style={{fontSize: 24, textAlign: 'center'}}> {this.state.name} : {this.state.title} </Text>
+                          <Text style={{fontSize: 24, textAlign: 'center'}}>
+                              {this.state.name} : {this.state.title}
+                          </Text>
                       </View>
-                      <View style={{height: 1, backgroundColor: '#d9d9d9'}} />
+                      {Divider()}
                       <Button
                           title={"Save Course"}
                           onPress={this.save}
                       />
+                      {VerticalPadding(50)}
                       <Button
                           title="View on SSC"
                           onPress={() => navigate('CourseWeb', {link: this.state.link})}
@@ -73,7 +77,9 @@ class CourseScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#053E77',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     header: {
         height: 100,

@@ -8,3 +8,9 @@ export function VerticalPadding(height) {
         }}/>
     );
 }
+
+export function Divider() {
+        return (
+            <View style={{height: 1, backgroundColor: '#d9d9d9'}} />
+        )
+}

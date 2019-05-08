@@ -23,8 +23,8 @@ export async function saveCourse(courseCode, courseNo) {
                 number: courseNo
             }];
             AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newList)).then(
-                () => alert('saved course')
-            ).catch((error) => alert('error saving'))
+                () => alert('Course saved!')
+            ).catch((error) => alert('error saving'));
         }
     ).catch((error) => {
         alert(error.toString());
