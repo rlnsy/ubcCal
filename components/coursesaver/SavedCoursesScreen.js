@@ -4,8 +4,6 @@ import {getCourses} from './CourseSaver'
 import {Text, View} from "react-native";
 import {renderStatusScreen} from "../main/StatusScreen";
 
-const EMPTY_COURSE_LIST = 'no courses to display';
-
 export default class SavedCoursesScreen extends Component {
 
     constructor(props) {
@@ -13,7 +11,8 @@ export default class SavedCoursesScreen extends Component {
         this.state = {
             isLoaded: false,
             error: null,
-            courses: null
+            courses: null,
+            isEmpty: true,
         };
         this.handleModify = this.handleModify.bind(this);
     }
@@ -24,17 +23,17 @@ export default class SavedCoursesScreen extends Component {
                 if (result == null) {
                     this.setState({
                         isLoaded: true,
-                        error: EMPTY_COURSE_LIST,
                         courses: [],
                     });
                     console.log('empty course list loaded')
                 } else {
+                    console.log('loaded courses');
+                    const list = JSON.parse(result);
                     this.setState({
                         isLoaded: true,
-                        courses: JSON.parse(result)
+                        courses: list,
+                        isEmpty: (list.length === 0)
                     });
-                    console.log('loaded courses');
-                    console.log(this.state.courses);
                 }
             }
         ).catch((error) => {
@@ -52,13 +51,13 @@ export default class SavedCoursesScreen extends Component {
     render() {
         return (
           <View>
-              {(this.state.isLoaded && !this.state.error) ?
+              {(this.state.isLoaded && !this.state.error && !this.state.isEmpty) ?
                   <SavedList
                       navigation={this.props.navigation}
                       data={this.state.courses}
                       onModify={this.handleModify}
                   /> :
-                  (this.state.error === EMPTY_COURSE_LIST) ?
+                  this.state.isEmpty ?
                       <Text> No courses yet. Go add some! </Text> :
                       renderStatusScreen(this.state.error)
               }
