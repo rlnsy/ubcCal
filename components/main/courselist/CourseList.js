@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import {FlatList} from 'react-native';
 import CourseListItem from './CourseListItem';
 
-export function itemize(list) {
+function itemize(list) {
     let items = [];
     for (let i = 0; i < list.length; i++) {
         items[items.length] = {key: i.toString(), object: list[i]};
@@ -17,8 +17,13 @@ export function itemize(list) {
 
 class CourseList extends Component {
 
+    constructor(props) {
+        super(props)
+        this.renderItem = this.renderItem.bind(this);
+    }
+
     _onPressItem = (id) => {
-        const selectedItem = this.props.data[id].object;
+        const selectedItem = this.props.data[id];
         const {navigate} = this.props.navigation;
         navigate('Course', {
             code: selectedItem.code,
@@ -26,19 +31,25 @@ class CourseList extends Component {
             );
     };
 
+    renderItem(item) {
+        return (
+            <CourseListItem
+                id={item.key}
+                onPressItem={this._onPressItem}
+                courseNo={item.object.number}
+                code={item.object.code}
+            />
+        )
+    }
+
     _renderItem = ({item}) => (
-        <CourseListItem
-            id={item.key}
-            onPressItem={this._onPressItem}
-            courseNo={item.object.number}
-            code={item.object.code}
-        />
+        this.renderItem(item)
     );
 
     render() {
         return (
           <FlatList
-            data={this.props.data}
+            data={itemize(this.props.data)}
             renderItem={this._renderItem}
           />
         );

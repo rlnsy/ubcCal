@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CourseList, {itemize} from '../main/courselist/CourseList';
+import SavedList from './SavedList';
 import {getCourses} from './CourseSaver'
 import {Text, View} from "react-native";
 import {renderStatusScreen} from "../main/StatusScreen";
@@ -15,6 +15,7 @@ export default class SavedCoursesScreen extends Component {
             error: null,
             courses: null
         };
+        this.handleModify = this.handleModify.bind(this);
     }
 
     componentDidMount() {
@@ -30,7 +31,7 @@ export default class SavedCoursesScreen extends Component {
                 } else {
                     this.setState({
                         isLoaded: true,
-                        courses: itemize(JSON.parse(result))
+                        courses: JSON.parse(result)
                     });
                     console.log('loaded courses');
                     console.log(this.state.courses);
@@ -44,13 +45,18 @@ export default class SavedCoursesScreen extends Component {
         });
     }
 
+    handleModify() {
+        this.componentDidMount();   // refresh
+    }
+
     render() {
         return (
           <View>
               {(this.state.isLoaded && !this.state.error) ?
-                  <CourseList
+                  <SavedList
                       navigation={this.props.navigation}
                       data={this.state.courses}
+                      onModify={this.handleModify}
                   /> :
                   (this.state.error === EMPTY_COURSE_LIST) ?
                       <Text> No courses yet. Go add some! </Text> :

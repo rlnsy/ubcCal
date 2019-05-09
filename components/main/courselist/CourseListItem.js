@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         height: 80,
         justifyContent: 'center',
         alignItems: 'center',
+        flexGrow: 1
     },
     itemText: {
         color: 'black',

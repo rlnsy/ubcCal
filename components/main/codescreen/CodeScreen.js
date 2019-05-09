@@ -7,7 +7,7 @@
 
 import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import CourseList, {itemize} from '../courselist/CourseList';
+import CourseList from '../courselist/CourseList';
 import {renderStatusScreen} from '../StatusScreen';
 
 function constructCourseList(rawCourses, code) {
@@ -42,7 +42,7 @@ class CodeScreen extends Component {
                 if (json) { // check for nonexistent object (i.e. invalid course code)
                     this.setState({
                         info: json,
-                        courses: itemize(constructCourseList(json.courses, this.state.code)),
+                        courses: constructCourseList(json.courses, this.state.code),
                         isLoaded: true
                     });
                 } else {

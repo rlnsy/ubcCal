@@ -34,3 +34,11 @@ export async function saveCourse(courseCode, courseNo) {
 export async function getCourses() {
     return AsyncStorage.getItem(STORAGE_KEY);
 }
+
+export async function removeCourse(courseIdx) {
+    // will not have null storage as long as remove
+    // can only be accessed from a list item
+    let list = JSON.parse(await AsyncStorage.getItem(STORAGE_KEY));
+    list.splice(courseIdx, 1);
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
